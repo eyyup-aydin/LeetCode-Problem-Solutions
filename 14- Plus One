@@ -1,0 +1,40 @@
+// https://leetcode.com/problems/plus-one/description/
+
+class Solution {
+    public int[] plusOne(int[] digits) {
+        boolean all9 = true;
+        for (int digit : digits) {
+            if (digit != 9) {
+                all9 = false;
+                break;
+            }
+        }
+        if (all9) {
+            int[] newArr = new int[digits.length + 1];
+            newArr[0] = 0;
+            int c = 1;
+            for (int digit : digits) newArr[c++] = digit;
+
+            digits = newArr;
+        }
+
+        int from = 0, idx = digits.length - 1;
+        digits[idx] += 1;
+        if (digits[idx] == 10) {
+            digits[idx--] = 0;
+            from++;
+        }
+        if (from != 0) {
+            for (int i = idx; i >= 0; --i) {
+                digits[i] += (from--);
+                if (digits[i] == 10) {
+                    digits[i] = 0;
+                    from++;
+                }
+                else
+                    break;
+            }
+        }
+        return digits;
+    }
+}
