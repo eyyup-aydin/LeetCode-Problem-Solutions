@@ -1,0 +1,16 @@
+class Solution {
+    public int reverse(int x) {
+        try {
+            StringBuilder sb = new StringBuilder();
+            sb.append(x);
+            sb = sb.reverse();
+            String xr = sb.toString();
+            if (xr.charAt(xr.length()-1) == '-') 
+                xr = '-' + xr.substring(0, xr.length()-1);
+
+            return Integer.parseInt(xr);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+}
