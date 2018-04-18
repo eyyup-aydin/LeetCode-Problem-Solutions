@@ -1,0 +1,27 @@
+// https://leetcode.com/problems/add-binary/description/
+
+class Solution {
+    public String addBinary(String a, String b) {
+        StringBuilder sb = new StringBuilder();
+        int i = a.length() - 1, j = b.length() - 1;
+        int ch1, ch2, temp = 0, sum;
+        while (i >= 0 || j >= 0) {
+            ch1 = i >= 0 ? a.charAt(i--) - '0' : 0;
+            ch2 = j >= 0 ? b.charAt(j--) - '0' : 0;
+            sum = ch1 + ch2 + temp;
+            if (sum > 1) {
+                temp = 1;
+                if (sum % 2 == 0)
+                    sb.append(0);
+                else
+                    sb.append(1);
+            }
+            else {
+                sb.append(sum);
+                temp = 0;
+            }
+        }
+        if (temp != 0) sb.append(1);
+        return sb.reverse().toString();
+    }
+}
