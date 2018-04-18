@@ -1,0 +1,27 @@
+// https://leetcode.com/problems/implement-strstr/description/
+
+class Solution {
+    public int strStr(String haystack, String needle) {
+        if (haystack == null || needle == null) return -1;
+        if (haystack.equals(needle) || needle.isEmpty()) return 0;
+
+        char[] h = haystack.toCharArray();
+        char[] n = needle.toCharArray();
+
+        int i = 0, j = 0, found = -1, iStart = 1;
+        while (i < h.length && j < n.length) {
+            if (h[i] != n[j]) {
+                j = 0;
+                i = (iStart++);
+                continue;
+            }
+            else if (j == 0) 
+                found = i;
+            
+            ++j;
+            ++i;
+        }
+        if (j < n.length) return -1;
+        return found;
+    }
+}
