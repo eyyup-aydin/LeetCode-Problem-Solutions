@@ -1,0 +1,49 @@
+// https://leetcode.com/problems/symmetric-tree/description/
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+
+import java.util.LinkedList;
+import java.util.Queue;
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null) return true;
+        //return isSymmetricIterative(root);
+        return isSymmetricRecursive(root.left, root.right);
+        
+    }
+    
+    private boolean isSymmetricRecursive(TreeNode r1, TreeNode r2) {
+        if (r1 == null && r2 == null) return true;
+        if (r1 == null || r2 == null) return false;
+        if (r1.val != r2.val) return false;
+        return isSymmetricRecursive(r1.left, r2.right) && isSymmetricRecursive(r1.right, r2.left);
+    }
+    
+    private boolean isSymmetricIterative(TreeNode root) {
+        if (root == null) return true;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root.left); q.add(root.right);
+        while (!q.isEmpty()) {
+            TreeNode t1 = q.poll();
+            TreeNode t2 = q.poll();
+            if (t1 == null && t2 == null) continue;
+            else if (t1 == null || t2 == null) return false;
+            else if (t1.val == t2.val) {
+                q.add(t1.left);
+                q.add(t2.right);
+                q.add(t1.right);
+                q.add(t2.left);
+            }
+            else return false;
+        }
+        return true;
+    }
+}
