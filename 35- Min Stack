@@ -1,0 +1,55 @@
+// https://leetcode.com/problems/min-stack/description/
+
+import java.util.EmptyStackException;
+
+class MinStack {
+
+    private int cap = 50;
+    private int size = 0;
+    private int[] arr;
+    private int min;
+    /** initialize your data structure here. */
+    public MinStack() {
+        arr = new int[cap];
+        min = Integer.MAX_VALUE;
+    }
+
+    public void push(int x) {
+        if (x < min)
+            min = x;
+        arr[size++] = x;
+        if (size == cap) {
+            int[] newArr = new int[cap * 2];
+            System.arraycopy(arr, 0, newArr, 0, cap);
+            arr = newArr;
+            cap = newArr.length;
+        }
+    }
+
+    public void pop() {
+        if (size == 0) throw new EmptyStackException();
+        if (arr[--size] == min) {
+            min = Integer.MAX_VALUE;
+            for (int i = 0; i < size; ++i)
+                if (arr[i] < min)
+                    min = arr[i];
+        }
+    }
+
+    public int top() {
+        return arr[size - 1];
+    }
+
+    public int getMin() {
+        return min;
+    }
+}
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(x);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.getMin();
+ */
