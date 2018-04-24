@@ -1,0 +1,27 @@
+// https://leetcode.com/problems/pascals-triangle-ii/description/
+
+import java.math.BigDecimal;
+
+class Solution {
+    public List<Integer> getRow(int rowIndex) {
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i <= rowIndex/2; i++) {
+            int dif = rowIndex - (rowIndex - i);
+            BigDecimal dividend = new BigDecimal(1);
+            BigDecimal divider = new BigDecimal(1);
+            int j = 0;
+            while (j != dif)
+                dividend = dividend.multiply(new BigDecimal(rowIndex - (j++)));
+            j = i;
+            while (j > 0)
+                divider = divider.multiply(new BigDecimal(j--));
+            result.add(dividend.divide(divider).intValue());
+        }
+        int from = rowIndex / 2;
+        if (rowIndex % 2 == 0)
+            from--;
+        while (from >= 0)
+            result.add(result.get(from--));
+        return result;
+    }
+}
