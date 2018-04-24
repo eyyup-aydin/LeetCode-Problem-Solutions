@@ -1,0 +1,35 @@
+// https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
+
+import java.util.Arrays;
+
+class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        if (numbers == null || numbers.length < 2) return null;
+        int lo = 0, hi = numbers.length - 1, sum;
+        int[] result = new int[2];
+        while (lo < hi) {
+            sum = numbers[lo] + numbers[hi];
+            if (sum == target) {
+                result[0] = lo + 1;
+                result[1] = hi + 1;
+                return result;
+            }
+            else if (sum < target) lo++;
+            else hi--;
+        }
+        return null;
+    }
+    
+    /*
+    public int[] twoSum(int[] numbers, int target) {
+        if (numbers == null || numbers.length < 2) return null;
+        
+        for (int i = 0; i < numbers.length - 1; i++) {
+            int s = Arrays.binarySearch(numbers, i + 1, numbers.length, target - numbers[i]);
+            if (s > 0)
+                return new int[]{i + 1, s + 1};
+        }
+        return null;
+    }
+    */
+}
