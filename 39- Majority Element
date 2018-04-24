@@ -1,0 +1,28 @@
+// https://leetcode.com/problems/majority-element/description/
+
+import java.util.Arrays;
+
+class Solution {
+    public int majorityElement(int[] nums) {
+        Arrays.sort(nums);
+        int c = 1, before = nums[0], total = (nums.length / 2) + 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] != before) c = 1;
+            else c++;
+
+            if (c >= total) return before;
+            before = nums[i];
+        }
+        return before;
+    }
+    
+    /*
+    public int majorityElement(int[] nums) {
+        if(nums.length == 1) {
+            return nums[0];
+        }
+        Arrays.sort(nums);
+        return nums[nums.length / 2]; 
+    }
+    */
+}
