@@ -1,0 +1,28 @@
+// https://leetcode.com/problems/excel-sheet-column-title/description/
+
+class Solution {
+    public String convertToTitle(int n) {
+        StringBuilder sb = new StringBuilder();
+        convertToTitle(n, sb);
+        return sb.reverse().toString();
+    }
+    
+    public void convertToTitle(int n, StringBuilder sb) {
+        if (n <= 26) {
+            sb.append((char)('@' + n));
+            return;
+        }
+        int division = n / 26;
+        int remainder = n % 26;
+        if (remainder == 0) {
+            division--;
+            remainder = 26;
+        }
+        sb.append((char)('@' + remainder));
+
+        if (division > 26)
+            convertToTitle(division, sb);
+        else
+            sb.append((char)('@' + division));
+    }
+}
