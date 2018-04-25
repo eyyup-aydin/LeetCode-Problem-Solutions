@@ -1,0 +1,25 @@
+// https://leetcode.com/problems/reverse-bits/description/
+
+public class Solution {
+    // you need treat n as an unsigned value
+    public int reverseBits(int n) {
+        char[] arr = Integer.toBinaryString(n).toCharArray();
+        reverse(arr, 0, arr.length - 1);
+        if (arr.length < 32) {
+            char[] newArr = new char[32];
+            System.arraycopy(arr, 0, newArr, 0, arr.length);
+            for (int i = arr.length; i < 32; i++)
+                newArr[i] = '0';
+            arr = newArr;
+        }
+        return Integer.parseUnsignedInt(new String(arr), 2);
+    }
+    
+    private void reverse(char[] arr, int s, int e) {
+        while (s <= e) {
+            char t = arr[e];
+            arr[e--] = arr[s];
+            arr[s++] = t;
+        }
+    }
+}
