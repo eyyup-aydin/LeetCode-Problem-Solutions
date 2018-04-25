@@ -1,0 +1,16 @@
+// https://leetcode.com/problems/factorial-trailing-zeroes/description/
+
+class Solution {
+    public int trailingZeroes(int n) {
+        int zeroes = 0;
+        int fivePower = 5;
+        int division;
+        do {
+            division = n / fivePower;
+            zeroes += division;
+            fivePower *= 5;
+        } while (division > 1);
+
+        return zeroes;
+    }
+}
