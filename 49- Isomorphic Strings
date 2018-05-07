@@ -1,0 +1,25 @@
+// https://leetcode.com/problems/isomorphic-strings/description/
+
+import java.util.HashMap;
+
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        if (s == null || t == null) return false;
+        HashMap<Character, Character> map = new HashMap<>();
+        char[] sA = s.toCharArray();
+        char[] tA = t.toCharArray();
+
+        for (int i = 0; i < sA.length; ++i) {
+            if (!map.containsKey(sA[i]) && !map.containsValue(tA[i])) {
+                map.put(sA[i], tA[i]);
+            }
+            else if (map.get(sA[i]) != null) {
+                if (!map.get(sA[i]).equals(tA[i]))
+                    return false;
+            }
+            else return false;
+        }
+
+        return true;
+    }
+}
