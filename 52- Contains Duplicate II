@@ -1,0 +1,28 @@
+// https://leetcode.com/problems/contains-duplicate-ii/description/
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+class Solution {
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        if (nums == null || nums.length == 1 || k == 0) return false;
+
+        HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
+        for (int i = 0; i < nums.length; ++i) {
+            if (map.containsKey(nums[i])) {
+                ArrayList<Integer> foundIndices = map.get(nums[i]);
+                for (Integer foundIdx : foundIndices) {
+                    if (Math.abs(i - foundIdx) <= k) return true;
+                }
+                foundIndices.add(i);
+            }
+            else {
+                ArrayList<Integer> foundIndices = new ArrayList<>();
+                foundIndices.add(i);
+                map.put(nums[i], foundIndices);
+            }
+        }
+
+        return false;
+    }
+}
