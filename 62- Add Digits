@@ -1,0 +1,33 @@
+// https://leetcode.com/problems/add-digits/description/
+
+/*
+Example 3:
+Input: 10
+Step 1: 1+0 = 1 (Expected output)
+
+Example 4:
+Input: 11
+Step 1: 1+1 = 2 (Expected output)
+
+Example 5:
+Input: 12
+Step 1: 1+2 = 3 (Expected output)
+
+Example 6:
+Input: 18
+Step 1: 1+8 = 9 (Expected output)
+
+Arguments: In mathematics we have learnt that any number that is divisible by 9, t
+he sum of the digits in the number is also divisible by 9. 
+Also, here we know that the result of the problem is an integer lying in the range [0,9] .
+*/
+
+
+class Solution {
+    public int addDigits(int num) {
+        if (num == 0) return 0;
+        int mod = num % 9;
+        if (mod == 0) return 9;
+        else return mod;
+    }
+}
