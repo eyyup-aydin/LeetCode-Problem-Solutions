@@ -1,0 +1,12 @@
+// https://leetcode.com/problems/missing-number/description/
+
+class Solution {
+    public int missingNumber(int[] nums) {
+        int realSum = 0, actualSum = nums.length;
+        for (int i = 0; i < nums.length; ++i) {
+            realSum += nums[i];
+            actualSum += i;
+        }
+        return actualSum - realSum;
+    }
+}
