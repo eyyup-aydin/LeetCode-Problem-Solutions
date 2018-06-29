@@ -1,0 +1,19 @@
+// https://leetcode.com/problems/word-pattern/description/
+
+class Solution {
+    public boolean wordPattern(String pattern, String str) {
+        char[] pArr = pattern.toCharArray();
+        String[] strArr = str.split(" ");
+        if (pArr.length == strArr.length) {
+            HashMap<Character, String> pMap = new HashMap<>();
+            for (int i = 0; i < strArr.length; i++) {
+                if (!pMap.containsKey(pArr[i]))
+                    pMap.put(pArr[i], strArr[i]);
+                else if (!strArr[i].equals(pMap.get(pArr[i])))
+                    return false;
+            }
+            return pMap.size() == (new HashSet<>(pMap.values()).size());
+        }
+        return false;
+    }
+}
