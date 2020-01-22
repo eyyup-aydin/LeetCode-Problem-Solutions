@@ -1,6 +1,6 @@
 <?php
 
-class Solution {
+class Solution_11 {
 
   /**
    * https://leetcode.com/problems/container-with-most-water/
@@ -25,7 +25,7 @@ class Solution {
   }
 }
 
-$sol = new Solution();
+$sol = new Solution_11();
 $arr = [1,8,6,2,5,4,8,3,7];
 
 $res = $sol->maxArea($arr);

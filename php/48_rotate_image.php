@@ -1,6 +1,6 @@
 <?php
 
-class Solution {
+class Solution_48 {
 
   /**
   * @param Integer[][] $matrix
@@ -41,6 +41,6 @@ $matrix = array
   array(7, 8, 9)
 );
 
-$sol = new Solution();
+$sol = new Solution_48();
 $sol->rotate($matrix);
 $sol->printMatrix($matrix);
